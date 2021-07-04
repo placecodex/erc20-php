@@ -21,10 +21,10 @@ class EventLogBuilder implements EventLogBuilderInterface
     {
         $tx['blockHash']        = $log->blockHash;
         $tx['blockNumber']      = hexdec($log->blockNumber);
-        $tx['data']             = sprintf('%f', hexdec($log->data)); 
+         $tx['data']            = sprintf('%f', hexdec($log->data)); 
         $tx['contract']         = $log->address;
-        $tx['from']             =  str_replace('000000000000000000000000', '', $log->topics[1]);
-        $tx['to']               = str_replace('000000000000000000000000', '', $log->topics[2]);
+        $tx['from']             = $log->topics[1];
+        $tx['to']               = (isset($log->topics[2])) ? $log->topics[2]: 'Undefined' ;
         $tx['transactionHash']  = $log->transactionHash;
         $tx['transactionIndex'] = hexdec($log->transactionIndex);
         $tx['type']             = $this->checkTopicFunction($log->topics[0]);
