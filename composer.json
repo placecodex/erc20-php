@@ -3,7 +3,7 @@
   "description": "This library provides simple way to interact with Ethereum ERC20 token",
   "type": "library",
   "license": "MIT",
-   "version": "dev",
+   "version": "1.0.0",
   "authors": [
     {
       "name": "placecodex",
