@@ -7,8 +7,9 @@
 
 namespace Placecodex\Ethereum\Foundation\Transaction;
 
-use kornrunner\Ethereum\Transaction as BaseTransaction;
+//use kornrunner\Ethereum\Transaction as BaseTransaction;
 use Placecodex\Ethereum\Foundation\Eth;
+use Web3p\EthereumTx\Transaction as BaseTransaction;
 
 class Transaction
 {
@@ -24,6 +25,6 @@ class Transaction
     public function sign($privateKey)
     {
         $privateKey = str_replace('0x', '', $privateKey);
-        return new SignedTransaction('0x' . $this->transaction->getRaw($privateKey), $this->eth);
+        return new SignedTransaction('0x' . $this->transaction->sign($privateKey), $this->eth);
     }
 }

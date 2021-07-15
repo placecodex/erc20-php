@@ -7,7 +7,9 @@
 
 namespace Placecodex\Ethereum\Foundation\Transaction;
 
-use kornrunner\Ethereum\Transaction as BaseTransaction;
+//use kornrunner\Ethereum\Transaction as BaseTransaction; // see here
+use Web3p\EthereumTx\Transaction as BaseTransaction; // see here
+
 use Placecodex\Ethereum\Foundation\Eth;
 
 class TransactionBuilder
@@ -67,8 +69,35 @@ class TransactionBuilder
         return $this;
     }
 
-    public function build()
+    public function _build()
     {
-        return new Transaction(new BaseTransaction($this->nonce, $this->gasPrice, $this->gasLimit, $this->to, $this->amount, $this->data), $this->eth);
+        return new Transaction(
+               new BaseTransaction(
+
+             $this->nonce,
+             $this->gasPrice,
+             $this->gasLimit, 
+             $this->to, 
+             $this->amount,
+             $this->data
+           )
+               ,$this->eth);
+    }
+
+     public function build()
+    {
+        return new Transaction(
+               new BaseTransaction(
+
+             $this->nonce,
+             '0x0',
+             $this->to,
+             $this->gasLimit,
+             $this->gasPrice,
+             $this->amount,
+             $this->data     
+
+           )
+               ,$this->eth);
     }
 }
